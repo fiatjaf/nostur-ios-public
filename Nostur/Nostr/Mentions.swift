@@ -223,19 +223,8 @@ func putHashtagsInTags(_ event:NEvent) -> NEvent {
         eventWithHashtags
             .tags
             .append(
-                NostrTag(["t", hashtag])
+                NostrTag(["t", hashtag.lowercased()])
             )
-        
-        // Also add lowercase tag if it's not already lowercase
-        if hashtag != hashtag.lowercased() {
-            if !hashtags.contains(hashtag.lowercased()) {
-                eventWithHashtags
-                    .tags
-                    .append(
-                        NostrTag(["t", hashtag.lowercased()])
-                    )
-            }
-        }
     }
     return eventWithHashtags
 }
